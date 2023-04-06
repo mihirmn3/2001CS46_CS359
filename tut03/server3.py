@@ -72,7 +72,6 @@ while input_sockets:
                 sckt.close()
                 clients_connected -= 1
                 print(f"{clients_connected} clients currently connected\n")
-                break
 
             # If data is not 0, then decode the message, which is in bytes, to string
             else:
