@@ -1,17 +1,19 @@
 from threading import *
 import queue
 from time import *
+from datetime import datetime
+
+start_time = datetime.now()  # For calculating the program execution time
 
 lock = Lock()  # Lock for maintaining proper printing by the threads
-
 num_routers = 0  # number of routers
-
 
 # Working:
 # There is a 'shared queue' in every router, which the neighbouring routers can access and send their
 # routing tables to. The router will then access this queue (after all the neighbours have sent their tables)
 # and update its own routing table according to the Bellman Ford equation. Further, every router is running in
 # parallel in a separate thread, hence replicating the real life scenario.
+
 
 class router:  # Every router is an instance of this class
 
@@ -224,3 +226,7 @@ for router_thread in router_threads:
 print("Final routing tables of each router:\n")
 for router_name in routers:
     routers[router_name].display_routing_table(num_routers)
+
+# Displaying the total program execution time
+end_time = datetime.now()
+print('Duration of Program Execution: {}'.format(end_time - start_time))
